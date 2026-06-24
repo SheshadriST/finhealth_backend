@@ -6,6 +6,15 @@ const router = express.Router();
 
 const signToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
 
+router.get('/test-db', async (req, res) => {
+  try {
+    const mongoose = require('mongoose');
+    await mongoose.connect(process.env.MONGODB_URI, { serverSelectionTimeoutMS: 5000 });
+    res.json({ dbState: mongoose.connection.readyState, message: 'connected!' });
+  } catch (err) {
+    res.json({ error: err.message });
+  }
+});
 // Register
 router.post('/register', async (req, res) => {
   try {
