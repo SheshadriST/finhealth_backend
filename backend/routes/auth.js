@@ -6,6 +6,11 @@ const router = express.Router();
 
 const signToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
 
+router.get('/debug-user', auth, async (req, res) => {
+  const user = await User.findById(req.user.id);
+  res.json(user);
+});
+
 router.get('/test-db', async (req, res) => {
   try {
     const mongoose = require('mongoose');
