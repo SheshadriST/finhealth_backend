@@ -1,0 +1,13 @@
+{
+  "name": "finhealth-frontend",
+  "version": "1.0.0",
+  "description": "FinHealth Frontend",
+  "scripts": {
+    "dev": "npx serve public -p 3000",
+    "build": "echo 'Static site — no build step needed. Deploy the public/ folder.'",
+    "preview": "npx serve public -p 3000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
