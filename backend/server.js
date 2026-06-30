@@ -7,13 +7,13 @@ const { apiLimiter, authLimiter } = require('./middleware/rateLimiter');
 
 const app = express();
 
-// Trust proxy — required for Vercel/Railway/Render/Nginx
+// Trust proxy 
 app.set('trust proxy', 1);
 
 // Security middleware
 app.use(helmet({ contentSecurityPolicy: false }));
 
-const ALLOWED_ORIGIN = process.env.FRONTEND_URL || '*';
+const ALLOWED_ORIGIN = process.env.FRONTEND_URL || 'http://127.0.0.1:5500';
 
 app.options('*', (req, res) => {
   const origin = req.headers.origin;
