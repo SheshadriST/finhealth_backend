@@ -30,14 +30,8 @@ router.get('/', auth, async (req, res) => {
 // Add transaction
 router.post('/', auth, async (req, res) => {
   try {
-    //const tx = await Transaction.create({ ...req.body, userId: req.user._id });
+    const tx = await Transaction.create({ ...req.body, userId: req.user._id });
     // Update budget spent
-    const transactionData = {
-      ...req.body,
-      userId: req.user._id,
-      amount: parseFloat(req.body.amount || 0)
-    };
-    const tx = await Transaction.create(transactionData);
     if (tx.type === 'expense') {
       const now = new Date(tx.date);
       await Budget.findOneAndUpdate(
